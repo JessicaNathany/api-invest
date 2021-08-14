@@ -13,7 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Model\Dtos\" />
     <Folder Include="Service\" />
   </ItemGroup>
 
