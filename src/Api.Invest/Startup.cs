@@ -16,9 +16,10 @@ namespace Api.Invest
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Ativando o uso de cache em memória
+            services.AddMemoryCache();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -27,7 +28,6 @@ namespace Api.Invest
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -38,9 +38,7 @@ namespace Api.Invest
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
