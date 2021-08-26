@@ -24,7 +24,7 @@ namespace Api.Invest
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Api.Invest", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "api.invest", Version = "v1" });
             });
         }
 
@@ -34,7 +34,7 @@ namespace Api.Invest
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Api.Invest v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "api.invest v1"));
             }
 
             app.UseHttpsRedirection();

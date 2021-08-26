@@ -28,7 +28,6 @@ namespace Api.Invest.Controllers
 
         [HttpGet]
         [Route("investimentos/meus-investimentos")]
-        //[SwaggerOperation(Summary = CartoesMessageSummary.CancelarCartaoDigital)]
         [ProducesResponseType(typeof(Investimentos), StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(InvestExemploErro), StatusCodes.Status400BadRequest)]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(InvestExemploErro))]
