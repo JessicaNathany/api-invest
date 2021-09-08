@@ -1,3 +1,4 @@
+using Api.Invest.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -16,10 +17,11 @@ namespace Api.Invest
 
         public IConfiguration Configuration { get; }
 
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             // Ativando o uso de cache em memória
             services.AddMemoryCache();
+            services.Configure<AppSettings>(configuration);
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
