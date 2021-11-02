@@ -17,11 +17,11 @@ namespace Api.Invest
 
         public IConfiguration Configuration { get; }
 
-        public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+        public void ConfigureServices(IServiceCollection services)
         {
             // Ativando o uso de cache em memória
             services.AddMemoryCache();
-            services.Configure<AppSettings>(configuration);
+            //services.Configure<AppSettings>(configuration);
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

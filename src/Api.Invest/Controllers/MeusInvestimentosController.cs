@@ -33,15 +33,20 @@ namespace Api.Invest.Controllers
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(InvestExemploErro))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized)]
         [SwaggerResponse(StatusCodes.Status403Forbidden)]
-        public IEnumerable<WeatherForecast> GetInvestimentos()
+        public IEnumerable<Investimentos> GetInvestimentos()
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            var investimentos = new List<Investimentos>();
+
+            var meusInvestimentos = new Investimentos
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            }).ToArray();
+                IR = 15,
+                Nome = "teste",
+                ValorInvestido = 100,
+            };
+
+            investimentos.Add(meusInvestimentos);
+
+            return investimentos;
         }
     }
 }
