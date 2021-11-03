@@ -41,7 +41,7 @@ namespace Api.Invest.Service
 
                 return totalInvestimentos;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw new Exception("Não foi possivel obter os resultados da busca. Tente mais tarde");
             }
@@ -53,8 +53,6 @@ namespace Api.Invest.Service
             var listaTesouroDireto = new List<TesouroDiretoDto>();
 
             var tesourosDiretoRepository = _tesouroDiretoRepository.GetAll();
-
-           
 
 
             foreach (var item in tesourosDiretoRepository)

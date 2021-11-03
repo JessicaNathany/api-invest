@@ -3,14 +3,13 @@ using Api.Invest.Model;
 using Api.Invest.Service.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.Filters;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Api.Invest.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
     public class MeusInvestimentosController : ControllerBase
     {
@@ -19,13 +18,6 @@ namespace Api.Invest.Controllers
         public MeusInvestimentosController(IMeusInvestimentosService meusInvestimentosService)
         {
             _meusInvestimentosService = meusInvestimentosService;
-        }
-
-        private readonly ILogger<MeusInvestimentosController> _logger;
-
-        public MeusInvestimentosController(ILogger<MeusInvestimentosController> logger)
-        {
-            _logger = logger;
         }
 
         [HttpGet]
@@ -38,20 +30,6 @@ namespace Api.Invest.Controllers
         public ActionResult GetInvestimentos()
         {
             var service =  _meusInvestimentosService.ObterInvestimentos();
-
-           
-
-            var investimentos = new List<Investimentos>();
-
-            var meusInvestimentos = new Investimentos
-            {
-                IR = 15,
-                Nome = "teste",
-                ValorInvestido = 100,
-            };
-
-            investimentos.Add(meusInvestimentos);
-
             return Ok(service);
         }
     }

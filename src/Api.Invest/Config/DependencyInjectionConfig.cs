@@ -9,10 +9,10 @@ namespace Api.Invest.Extensions
     {
         public static IServiceCollection ResolveDependencies(this IServiceCollection services)
         {
-            services.AddScoped<IMeusInvestimentosService, MeusInvestimentosService>();
             services.AddScoped<IFundosRepository, FundosRepository>();
             services.AddScoped<ITesouroDiretoRepository, TesouroDiretoRepository>();
             services.AddScoped<IRendaFixaRepository, RendaFixaRepository>();
+            services.AddScoped<IMeusInvestimentosService, MeusInvestimentosService>();
 
             return services;
         }

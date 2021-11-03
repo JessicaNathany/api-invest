@@ -19,10 +19,8 @@ namespace Api.Invest
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // Ativando o uso de cache em memória
+            services.ResolveDependencies();
             services.AddMemoryCache();
-            //services.Configure<AppSettings>(configuration);
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

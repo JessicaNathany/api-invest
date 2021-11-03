@@ -20,7 +20,8 @@ namespace Api.Invest.Data.Repository
             response.EnsureSuccessStatusCode();
             var result = response.Content.ReadAsStringAsync().Result;
 
-            return JsonConvert.DeserializeObject<List<TDDto>>(result);
+            var resultado =  JsonConvert.DeserializeObject<List<TDDto>>(result);
+            return resultado;
         }
     }
 }
