@@ -8,7 +8,7 @@ namespace Api.Invest.Data.Repository
 {
     public class TesouroDiretoRepository : ITesouroDiretoRepository
     {
-        public IList<TesouroDiretoDto> GetAll()
+        public IList<TDDto> GetAll()
         {
             using var client = new HttpClient();
             
@@ -20,7 +20,7 @@ namespace Api.Invest.Data.Repository
             response.EnsureSuccessStatusCode();
             var result = response.Content.ReadAsStringAsync().Result;
 
-            return JsonConvert.DeserializeObject<List<TesouroDiretoDto>>(result);
+            return JsonConvert.DeserializeObject<List<TDDto>>(result);
         }
     }
 }

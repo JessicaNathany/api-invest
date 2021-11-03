@@ -1,23 +1,25 @@
 ﻿using Api.Invest.Example;
 using Api.Invest.Model;
+using Api.Invest.Service.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.Filters;
-using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace Api.Invest.Controllers
 {
     [ApiController]
     public class MeusInvestimentosController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
+        private readonly IMeusInvestimentosService _meusInvestimentosService;
+
+        public MeusInvestimentosController(IMeusInvestimentosService meusInvestimentosService)
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+            _meusInvestimentosService = meusInvestimentosService;
+        }
 
         private readonly ILogger<MeusInvestimentosController> _logger;
 
@@ -33,8 +35,12 @@ namespace Api.Invest.Controllers
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(InvestExemploErro))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized)]
         [SwaggerResponse(StatusCodes.Status403Forbidden)]
-        public IEnumerable<Investimentos> GetInvestimentos()
+        public ActionResult GetInvestimentos()
         {
+            var service =  _meusInvestimentosService.ObterInvestimentos();
+
+           
+
             var investimentos = new List<Investimentos>();
 
             var meusInvestimentos = new Investimentos
@@ -46,7 +52,7 @@ namespace Api.Invest.Controllers
 
             investimentos.Add(meusInvestimentos);
 
-            return investimentos;
+            return Ok(service);
         }
     }
 }

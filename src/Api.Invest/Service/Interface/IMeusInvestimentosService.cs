@@ -5,6 +5,6 @@ namespace Api.Invest.Service.Interface
 {
     public interface IMeusInvestimentosService
     {
-        IList<Investimentos> ObterTodosInvestimentos();
+        IList<Investimentos> ObterInvestimentos();
     }
 }

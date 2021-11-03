@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Data\Map\" />
     <Folder Include="Service\" />
   </ItemGroup>
 

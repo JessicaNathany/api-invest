@@ -4,7 +4,7 @@ using Api.Invest.Model.Dtos;
 using Api.Invest.Service.Interface;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace Api.Invest.Service
 {
@@ -21,7 +21,7 @@ namespace Api.Invest.Service
             _tesouroDiretoRepository = tesouroDiretoRepository;
         }
 
-        public IList<Investimentos> ObterTodosInvestimentos()
+        public IList<Investimentos> ObterInvestimentos()
         {
             try
             {
@@ -30,8 +30,6 @@ namespace Api.Invest.Service
 
                 var rendasFixa = ObtemListaRendaFixa();
                 var listaTesouroDireto = ObtemListaTesouroDireto();
-
-
 
 
                 /* Cálculo do resgate: investimento com mais da metade do tempo em custódia. 
@@ -56,16 +54,20 @@ namespace Api.Invest.Service
 
             var tesourosDiretoRepository = _tesouroDiretoRepository.GetAll();
 
+           
+
+
             foreach (var item in tesourosDiretoRepository)
             {
-                tesouroDireto.ValorInvestido = item.ValorInvestido;
-                tesouroDireto.ValorTotal = item.ValorTotal;
-                tesouroDireto.Vencimento = item.Vencimento;
-                tesouroDireto.DataCompra = item.DataCompra;
-                tesouroDireto.Iof = item.Iof;
-                tesouroDireto.Indice = item.Indice;
-                tesouroDireto.Tipo = item.Tipo;
-                tesouroDireto.Nome = item.Nome;
+              
+                //tesouroDireto.ValorInvestido = item.ValorInvestido;
+                //tesouroDireto.ValorTotal = item.ValorTotal;
+                //tesouroDireto.Vencimento = item.Vencimento;
+                //tesouroDireto.DataCompra = item.DataCompra;
+                //tesouroDireto.Iof = item.Iof;
+                //tesouroDireto.Indice = item.Indice;
+                //tesouroDireto.Tipo = item.Tipo;
+                //tesouroDireto.Nome = item.Nome;
             }
 
             listaTesouroDireto.Add(tesouroDireto);
