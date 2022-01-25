@@ -4,7 +4,6 @@ using Api.Invest.Model.Dtos;
 using Api.Invest.Service.Interface;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Api.Invest.Service
 {
@@ -29,6 +28,10 @@ namespace Api.Invest.Service
                 var investimentos = new Investimentos();
 
                 var rendasFixa = ObtemListaRendaFixa();
+               
+                if (rendasFixa == null)
+                    return null;
+
                 var listaTesouroDireto = ObtemListaTesouroDireto();
 
 

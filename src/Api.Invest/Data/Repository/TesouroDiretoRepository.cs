@@ -8,20 +8,20 @@ namespace Api.Invest.Data.Repository
 {
     public class TesouroDiretoRepository : ITesouroDiretoRepository
     {
-        public IList<TDDto> GetAll()
+        public IList<TesouroDiretoDto> GetAll()
         {
             using var client = new HttpClient();
             
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            HttpResponseMessage response = client.GetAsync("http://www.mocky.io/v2/5e3428203000006b00d9632a").Result;
+            var response = client.GetAsync("http://www.mocky.io/v2/5e3428203000006b00d9632a").Result;
             
             response.EnsureSuccessStatusCode();
             var result = response.Content.ReadAsStringAsync().Result;
 
-            var resultado =  JsonConvert.DeserializeObject<List<TDDto>>(result);
-            return resultado;
+            var teste =  JsonConvert.DeserializeObject<List<TesouroDiretoDto>>(result);
+            return teste;
         }
     }
 }

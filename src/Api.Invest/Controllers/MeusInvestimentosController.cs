@@ -13,12 +13,12 @@ namespace Api.Invest.Controllers
     [ApiController]
     public class MeusInvestimentosController : ControllerBase
     {
-        private readonly IMeusInvestimentosService _meusInvestimentosService;
+        //private readonly IMeusInvestimentosService _meusInvestimentosService;
 
-        public MeusInvestimentosController(IMeusInvestimentosService meusInvestimentosService)
-        {
-            _meusInvestimentosService = meusInvestimentosService;
-        }
+        //public MeusInvestimentosController(IMeusInvestimentosService meusInvestimentosService)
+        //{
+        //    _meusInvestimentosService = meusInvestimentosService;
+        //}
 
         [HttpGet]
         [Route("investimentos/meus-investimentos")]
@@ -27,9 +27,9 @@ namespace Api.Invest.Controllers
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(InvestExemploErro))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized)]
         [SwaggerResponse(StatusCodes.Status403Forbidden)]
-        public ActionResult GetInvestimentos()
+        public ActionResult GetInvestimentos([FromServices] IMeusInvestimentosService service)
         {
-            var service =  _meusInvestimentosService.ObterInvestimentos();
+            service.ObterInvestimentos();
             return Ok(service);
         }
     }
