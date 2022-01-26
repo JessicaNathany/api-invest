@@ -4,13 +4,13 @@ namespace Api.Invest.Model.Dtos
 {
     public class RendaFixaDto
     {
-        public int CapitalInvestido { get; set; }
-        public int CapitalAtual { get; set; }
-        public int Quantidade { get; set; }
+        public double CapitalInvestido { get; set; }
+        public double CapitalAtual { get; set; }
+        public string Quantidade { get; set; }
         public DateTime Vencimento { get; set; }
-        public int Iof { get; set; }
-        public int OutrasTaxas { get; set; }
-        public int Taxas { get; set; }
+        public string Iof { get; set; }
+        public string OutrasTaxas { get; set; }
+        public string Taxas { get; set; }
         public string Indice { get; set; }
         public string Tipo { get; set; }
         public string Nome { get; set; }

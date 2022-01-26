@@ -5,6 +5,6 @@ namespace Api.Invest.Data.Repository
 {
     public interface ITesouroDiretoRepository
     {
-        IList<TesouroDiretoDto> GetAll();
+        IList<TDDto> GetAll();
     }
 }

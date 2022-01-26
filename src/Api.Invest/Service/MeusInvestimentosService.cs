@@ -13,7 +13,10 @@ namespace Api.Invest.Service
         private readonly IFundosRepository _fundosRepository;
         private readonly ITesouroDiretoRepository _tesouroDiretoRepository;
 
-        public MeusInvestimentosService(IRendaFixaRepository rendaFixaRepository, IFundosRepository fundosRepository, ITesouroDiretoRepository tesouroDiretoRepository)
+        List<Investimentos> totalInvestimentos = new List<Investimentos>();
+        public MeusInvestimentosService(IRendaFixaRepository rendaFixaRepository, 
+                                        IFundosRepository fundosRepository, 
+                                        ITesouroDiretoRepository tesouroDiretoRepository)
         {
             _rendaFixaRepository = rendaFixaRepository;
             _fundosRepository = fundosRepository;
@@ -24,15 +27,29 @@ namespace Api.Invest.Service
         {
             try
             {
-                var totalInvestimentos = new List<Investimentos>();
                 var investimentos = new Investimentos();
 
-                var rendasFixa = ObtemListaRendaFixa();
-               
-                if (rendasFixa == null)
-                    return null;
+                var teste = ObtemTodosInvestimentosTesouroDireto();
 
-                var listaTesouroDireto = ObtemListaTesouroDireto();
+
+
+                /*
+                 * Criar um endpoint que retorne o valor total do investimento do cliente e lista dos seus investimentos. 
+                 * Cada item da lista deverá conter seu valor unitário, cálculo de IR conforme regra abaixo e valor calculado 
+                 * caso o cliente queira resgatar seu investimento na data. O contrato esperado para o retorno é o seguinte:
+                 * 
+                 * {
+                       "valorTotal": 829.68,
+                       //Aqui deverão ser listados todos os investimentos retornados pelos 3 serviços
+                       "investimentos": [{
+                       "nome": "Tesouro Selic 2025",
+                       "valorInvestido": 799.4720,
+                       "valorTotal": 829.68,
+                       "vencimento": "2025-03-01T00:00:00",
+                       "Ir": 3.0208,
+                       "valorResgate": 705.228
+                   }]
+                   }*/
 
 
                 /* Cálculo do resgate: investimento com mais da metade do tempo em custódia. 
@@ -46,49 +63,37 @@ namespace Api.Invest.Service
             }
             catch (Exception ex)
             {
-                throw new Exception("Não foi possivel obter os resultados da busca. Tente mais tarde");
+                throw new Exception("Não foi possivel obter os resultados da busca. Tente mais tarde", ex);
             }
         }
 
-        private List<TesouroDiretoDto> ObtemListaTesouroDireto()
+        private List<Investimentos> ObtemTodosInvestimentosTesouroDireto()
         {
-            var tesouroDireto = new TesouroDiretoDto();
-            var listaTesouroDireto = new List<TesouroDiretoDto>();
+            var investimentosTesouro = new List<Investimentos>();
+            var investimento = new Investimentos();
 
-            var tesourosDiretoRepository = _tesouroDiretoRepository.GetAll();
+            var listaTesouroDireto = _tesouroDiretoRepository.GetAll();
 
+            if (listaTesouroDireto == null)
+                return null;
 
-            foreach (var item in tesourosDiretoRepository)
+            foreach (var item in listaTesouroDireto)
             {
-              
-                //tesouroDireto.ValorInvestido = item.ValorInvestido;
-                //tesouroDireto.ValorTotal = item.ValorTotal;
-                //tesouroDireto.Vencimento = item.Vencimento;
-                //tesouroDireto.DataCompra = item.DataCompra;
-                //tesouroDireto.Iof = item.Iof;
-                //tesouroDireto.Indice = item.Indice;
-                //tesouroDireto.Tipo = item.Tipo;
-                //tesouroDireto.Nome = item.Nome;
+                var tesourosDireto = item.TesourosDireto;
+
+                foreach (var itemTesouroDireto in tesourosDireto)
+                {
+                    investimento.Nome = itemTesouroDireto.Nome;
+                    investimento.ValorInvestido = itemTesouroDireto.ValorInvestido;
+                    investimento.ValorTotal = itemTesouroDireto.ValorTotal;
+                    investimento.Vencimento = itemTesouroDireto.Vencimento;
+                    // incluir o cálculo do resgate e o cálculo do IR
+                }
+
+                investimentosTesouro.Add(investimento);
             }
 
-            listaTesouroDireto.Add(tesouroDireto);
-
-            return listaTesouroDireto;
-        }
-
-        private List<RendaFixaDto> ObtemListaRendaFixa()
-        {
-            var listRendasFixa = new List<RendaFixaDto>();
-            var rendaFixa = new RendaFixaDto();
-
-            var rendasFixaRepository = _rendaFixaRepository.GetAll();
-
-            foreach (var item in rendasFixaRepository)
-            {
-                
-            }
-
-            return listRendasFixa;
+            return investimentosTesouro;
         }
     }
 }
