@@ -8,7 +8,7 @@ namespace Api.Invest.Data.Repository
 {
     public class TesouroDiretoRepository : ITesouroDiretoRepository
     {
-        public IList<TDDto> GetAll()
+        public IList<TDDto> ObterTodos()
         {
             using var client = new HttpClient();
             var listaTdd = new List<TDDto>();

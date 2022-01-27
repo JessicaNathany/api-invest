@@ -2,7 +2,7 @@
 
 namespace Api.Invest.Model
 {
-    public class Investimentos
+    public class Investimento
     {
         public string Nome { get; set; }
         public decimal ValorTotal { get; set; }

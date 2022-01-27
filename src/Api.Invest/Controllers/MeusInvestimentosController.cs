@@ -14,7 +14,7 @@ namespace Api.Invest.Controllers
     {
         [HttpGet]
         [Route("investimentos/obter-todos")]
-        [ProducesResponseType(typeof(Investimentos), StatusCodes.Status202Accepted)]
+        [ProducesResponseType(typeof(Investimento), StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(InvestExemploErro), StatusCodes.Status400BadRequest)]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(InvestExemploErro))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized)]
@@ -27,7 +27,7 @@ namespace Api.Invest.Controllers
 
         [HttpGet]
         [Route("investimentos/obter-tesouro-direto")]
-        [ProducesResponseType(typeof(Investimentos), StatusCodes.Status202Accepted)]
+        [ProducesResponseType(typeof(Investimento), StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(InvestExemploErro), StatusCodes.Status400BadRequest)]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(InvestExemploErro))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized)]
@@ -40,7 +40,7 @@ namespace Api.Invest.Controllers
 
         [HttpGet]
         [Route("investimentos/obter-tesouro-renda-fixa")]
-        [ProducesResponseType(typeof(Investimentos), StatusCodes.Status202Accepted)]
+        [ProducesResponseType(typeof(Investimento), StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(InvestExemploErro), StatusCodes.Status400BadRequest)]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(InvestExemploErro))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized)]
@@ -53,7 +53,7 @@ namespace Api.Invest.Controllers
 
         [HttpGet]
         [Route("investimentos/obter-tesouro-fundos")]
-        [ProducesResponseType(typeof(Investimentos), StatusCodes.Status202Accepted)]
+        [ProducesResponseType(typeof(Investimento), StatusCodes.Status202Accepted)]
         [ProducesResponseType(typeof(InvestExemploErro), StatusCodes.Status400BadRequest)]
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(InvestExemploErro))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized)]

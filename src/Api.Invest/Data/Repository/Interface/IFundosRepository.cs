@@ -5,6 +5,6 @@ namespace Api.Invest.Data.Repository
 {
     public interface IFundosRepository
     {
-        IList<FundosDto> GetAll();
+        IList<FundosDto> ObterTodos();
     }
 }

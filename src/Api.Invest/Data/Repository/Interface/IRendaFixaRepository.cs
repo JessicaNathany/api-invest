@@ -5,6 +5,6 @@ namespace Api.Invest.Data.Repository
 {
     public interface IRendaFixaRepository
     {
-        IList<LCIDto> GetAll();
+        IList<LCIDto> ObterTodos();
     }
 }

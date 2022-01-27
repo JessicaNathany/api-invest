@@ -8,7 +8,7 @@ namespace Api.Invest.Data.Repository
 {
     public class RendaFixaRepository : IRendaFixaRepository
     {
-        public IList<LCIDto> GetAll()
+        public IList<LCIDto> ObterTodos()
         {
             using var client = new HttpClient();
             var listaLci = new List<LCIDto>();

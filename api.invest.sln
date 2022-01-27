@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Invest", "src\Api.Invest\Api.Invest.csproj", "{3E4DB5CA-59D3-401A-AF91-816F8EAB7EA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api.Invest", "src\Api.Invest\Api.Invest.csproj", "{3E4DB5CA-59D3-401A-AF91-816F8EAB7EA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiInvest.Tests", "src\Tests\ApiInvest.Tests\ApiInvest.Tests.csproj", "{CF250B20-2447-48C8-B299-01A0681694DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{3E4DB5CA-59D3-401A-AF91-816F8EAB7EA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E4DB5CA-59D3-401A-AF91-816F8EAB7EA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E4DB5CA-59D3-401A-AF91-816F8EAB7EA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF250B20-2447-48C8-B299-01A0681694DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF250B20-2447-48C8-B299-01A0681694DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF250B20-2447-48C8-B299-01A0681694DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF250B20-2447-48C8-B299-01A0681694DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
