@@ -13,9 +13,7 @@ namespace Api.Invest.Service
         private readonly ITesouroDiretoRepository _tesouroDiretoRepository;
 
         List<Investimento> totalInvestimentos = new List<Investimento>();
-        public MeusInvestimentosService(IRendaFixaRepository rendaFixaRepository, 
-                                        IFundosRepository fundosRepository, 
-                                        ITesouroDiretoRepository tesouroDiretoRepository)
+        public MeusInvestimentosService(IRendaFixaRepository rendaFixaRepository, IFundosRepository fundosRepository, ITesouroDiretoRepository tesouroDiretoRepository)
         {
             _rendaFixaRepository = rendaFixaRepository;
             _fundosRepository = fundosRepository;
@@ -63,7 +61,7 @@ namespace Api.Invest.Service
                     investimento.ValorInvestido = itemTesouroDireto.ValorInvestido;
                     investimento.ValorTotal = itemTesouroDireto.ValorTotal;
                     investimento.Vencimento = itemTesouroDireto.Vencimento;
-                    investimento.IR = Convert.ToDouble(itemTesouroDireto.ValorTotal - itemTesouroDireto.ValorInvestido);
+                    investimento.IR = Convert.ToDouble(itemTesouroDireto.ValorTotal - itemTesouroDireto.ValorInvestido) - 10 / 100;
                     // calcular valor do resgate
                 }
 
@@ -93,6 +91,7 @@ namespace Api.Invest.Service
                     investimento.ValorInvestido = Convert.ToDecimal(item.CapitalInvestido);
                     investimento.Vencimento = item.Vencimento;
                     investimento.IR = item.CapitalAtual - item.CapitalInvestido;
+                    investimento.IR = Convert.ToDouble(item.CapitalAtual - item.CapitalInvestido) - 5 / 100;
                     // calcular o valor do resgate
                 }
             }
@@ -119,7 +118,8 @@ namespace Api.Invest.Service
                     investimento.Nome = item.Nome;
                     investimento.ValorInvestido = item.CapitalInvestido;
                     investimento.Vencimento = item.DataResgate;
-                    investimento.IR = Convert.ToDouble(item.ValorAtual - item.CapitalInvestido);
+                    investimento.IR = Convert.ToDouble(item.ValorAtual - item.CapitalInvestido) - 15 / 100;
+                    
                     //calcular valor do resgate
                 }
             }
@@ -127,12 +127,15 @@ namespace Api.Invest.Service
             return investimentosFundos;
         }
 
-        private double CalculoResgate(DateTime dataVencimento) 
+        private double CalculoResgate(DateTime dataVencimento)
         {
-            double descontoIR = 0;
-            // 10% 
+            double valorResgate = 0;
+            var dataResgate = DateTime.Now;
 
-            return descontoIR;
+            var mesesVencerTitulo = dataVencimento.AddMonths(-3);
+
+
+            return valorResgate;
         }
     }
 }
