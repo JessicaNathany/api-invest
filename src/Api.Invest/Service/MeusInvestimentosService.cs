@@ -62,6 +62,7 @@ namespace Api.Invest.Service
                     investimento.ValorTotal = itemTesouroDireto.ValorTotal;
                     investimento.Vencimento = itemTesouroDireto.Vencimento;
                     investimento.IR = Convert.ToDouble(itemTesouroDireto.ValorTotal - itemTesouroDireto.ValorInvestido) - 10 / 100;
+                    investimento.ValorResgate = CalculoResgate(itemTesouroDireto.Vencimento);
                     // calcular valor do resgate
                 }
 
@@ -90,9 +91,9 @@ namespace Api.Invest.Service
                     investimento.Nome = item.Nome;
                     investimento.ValorInvestido = Convert.ToDecimal(item.CapitalInvestido);
                     investimento.Vencimento = item.Vencimento;
-                    investimento.IR = item.CapitalAtual - item.CapitalInvestido;
-                    investimento.IR = Convert.ToDouble(item.CapitalAtual - item.CapitalInvestido) - 5 / 100;
-                    // calcular o valor do resgate
+                    investimento.IR = item.CapitalAtual - item.CapitalInvestido; // validar regra IR
+                    investimento.IR = Convert.ToDouble(item.CapitalAtual - item.CapitalInvestido) - 5 / 100; // validar calculo IR
+                    investimento.ValorResgate = CalculoResgate(item.Vencimento);
                 }
             }
 
@@ -119,7 +120,8 @@ namespace Api.Invest.Service
                     investimento.ValorInvestido = item.CapitalInvestido;
                     investimento.Vencimento = item.DataResgate;
                     investimento.IR = Convert.ToDouble(item.ValorAtual - item.CapitalInvestido) - 15 / 100;
-                    
+                    investimento.ValorResgate = CalculoResgate(item.DataResgate);
+
                     //calcular valor do resgate
                 }
             }
@@ -132,8 +134,9 @@ namespace Api.Invest.Service
             double valorResgate = 0;
             var dataResgate = DateTime.Now;
 
-            var mesesVencerTitulo = dataVencimento.AddMonths(-3);
-
+            var investimentoComMetadeTempoCustodia = dataVencimento.AddMonths(-3);
+            var investimentoComAteTresMesesVencer = dataVencimento.AddMonths(-3);
+            var outrosInvestimentoVencimento = dataVencimento.AddMonths(-3);
 
             return valorResgate;
         }
