@@ -6,7 +6,7 @@ using System.Net.Http.Headers;
 
 namespace Api.Invest.Data.Repository
 {
-    public class FundosRepository : IFundosRepository
+    public class FundoRepository : IFundoRepository
     {
         public IList<FundosDto> ObterTodos()
         {
@@ -16,7 +16,7 @@ namespace Api.Invest.Data.Repository
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var response = client.GetAsync("http://www.mocky.io/v2/5e3429a33000008c00d96336").Result;
+            var response = client.GetAsync("http://www.mocky.io/v2/5e342ab33000008c00d96342").Result;
 
             response.EnsureSuccessStatusCode();
             var result = response.Content.ReadAsStringAsync().Result;

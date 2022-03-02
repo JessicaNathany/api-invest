@@ -21,8 +21,8 @@ namespace Api.Invest.Controllers
         [SwaggerResponse(StatusCodes.Status403Forbidden)]
         public ActionResult GetInvestimentos([FromServices] IMeusInvestimentosService service)
         {
-            service.ObterInvestimentos();
-            return Ok(service);
+            var investimentos = service.ObterInvestimentos();
+            return Ok(investimentos);
         }
 
         [HttpGet]
@@ -32,10 +32,10 @@ namespace Api.Invest.Controllers
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(InvestExemploErro))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized)]
         [SwaggerResponse(StatusCodes.Status403Forbidden)]
-        public ActionResult GetTesourdoDireto([FromServices] IMeusInvestimentosService service)
+        public ActionResult GetTesourdoDireto([FromServices] ITesouroDiretoServices service)
         {
-            service.ObterInvestimentos();
-            return Ok(service);
+            var listaTesouroDireto = service.ObtemTodosInvestimentosTesouroDireto();
+            return Ok(listaTesouroDireto);
         }
 
         [HttpGet]
@@ -45,10 +45,10 @@ namespace Api.Invest.Controllers
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(InvestExemploErro))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized)]
         [SwaggerResponse(StatusCodes.Status403Forbidden)]
-        public ActionResult GetRendaFixa([FromServices] IMeusInvestimentosService service)
+        public ActionResult GetRendaFixa([FromServices] IRendaFixaService service)
         {
-            service.ObterInvestimentos();
-            return Ok(service);
+            var listaRendaFixa = service.ObtemTodosInvestimentosRendaFixa();
+            return Ok(listaRendaFixa);
         }
 
         [HttpGet]
@@ -58,10 +58,10 @@ namespace Api.Invest.Controllers
         [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(InvestExemploErro))]
         [SwaggerResponse(StatusCodes.Status401Unauthorized)]
         [SwaggerResponse(StatusCodes.Status403Forbidden)]
-        public ActionResult GetFundos([FromServices] IMeusInvestimentosService service)
+        public ActionResult GetFundos([FromServices] IFundoService service)
         {
-            service.ObterInvestimentos();
-            return Ok(service);
+           var listaFundos =  service.ObtemTodosInvestimentosFundos();
+            return Ok(listaFundos);
         }
     }
 }

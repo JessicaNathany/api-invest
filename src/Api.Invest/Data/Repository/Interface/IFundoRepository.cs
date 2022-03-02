@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Api.Invest.Data.Repository
 {
-    public interface IFundosRepository
+    public interface IFundoRepository
     {
         IList<FundosDto> ObterTodos();
     }
